@@ -1,0 +1,6 @@
+F:\DuckDuckGo_Clone\DuckDuck\DuckDuck\bin\DuckDuck.dll.config
+F:\DuckDuckGo_Clone\DuckDuck\DuckDuck\bin\DuckDuck.dll
+F:\DuckDuckGo_Clone\DuckDuck\DuckDuck\bin\DuckDuck.pdb
+F:\DuckDuckGo_Clone\DuckDuck\DuckDuck\obj\Debug\DuckDuck.csprojResolveAssemblyReference.cache
+F:\DuckDuckGo_Clone\DuckDuck\DuckDuck\obj\Debug\DuckDuck.dll
+F:\DuckDuckGo_Clone\DuckDuck\DuckDuck\obj\Debug\DuckDuck.pdb
