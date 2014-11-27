@@ -4,7 +4,7 @@
         $scope.Search = function () {
             if($scope.query)
             {
-                $location.path('/search').search({query:$scope.query});
+                $location.path($scope.query);
             }
         };
     }

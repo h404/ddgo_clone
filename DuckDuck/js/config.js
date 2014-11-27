@@ -7,7 +7,7 @@ define([], function () {
               templateUrl: 'partials/home.view.html',
               controller: 'MainController'
           }).
-          when('/search/:query', {
+          when('/:query', {
               templateUrl: 'partials/details.view.html',
               controller: 'DetailsController'
           }).
