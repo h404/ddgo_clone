@@ -13,15 +13,19 @@
             return searchurl+str.join("&");
         };
 
-        var getResult = function (query) {
+        var getResult = function (query,callback) {
             var url = serialize({ q: query, format: 'json', pretty: 1 });
             $http.jsonp(url).success(function (data, status) {
-                deferred.resolve(data);
+                if(callback)
+                {
+                    callback(data);
+                }
+                //deferred.resolve(data);
             }).error(function (data, status) {
-                deferred.reject(data);
+                //deferred.reject(data);
             });
 
-            return deferred.promise;
+            //return deferred.promise;
         };
 
         return {
