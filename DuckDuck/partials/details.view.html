@@ -17,7 +17,26 @@
         </div>
 
         <div class="detail_content">
-
+            <div class="media">
+                <a class="media-left" href="#">
+                    <img ng-src="{{head.mainimg}}" class="title_img"/>
+                </a>
+                <div class="media-body">
+                    <h3 class="media-heading">{{head.title}}</h3>
+                    <p class="head_description" ng-showmore>
+                        {{head.description}}
+                    </p>
+                    <div class="show_more">
+                        <span class="glyphicon glyphicon-circle-arrow-down"></span>
+                        <span>Show More</span>
+                    </div>
+                    <div class="hide_it">
+                        <span class="glyphicon glyphicon-circle-arrow-down"></span>
+                        <span>Show More</span>
+                    </div>
+                </div>
+            </div>
+            
         </div>
 
     </div>
