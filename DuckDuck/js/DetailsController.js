@@ -14,7 +14,7 @@ define([], function () {
 
             if(data.Image != "")
             {
-                $scope.head.mainimg = data.Image;
+                head.mainimg = data.Image;
             }
             else
             {
@@ -22,14 +22,14 @@ define([], function () {
             }
 
             if (data.Heading != "") {
-                $scope.head.title = data.Heading;
+                head.title = data.Heading;
             }
             else {
                 //Need to handle
             }
 
             if (data.AbstractText != "") {
-                $scope.head.description = data.AbstractText;
+                head.description = data.AbstractText;
             }
             else {
 
@@ -38,6 +38,23 @@ define([], function () {
 
 
             $scope.head = head;
+            $scope.IsDetails = true;
+
+
+            var rt = {
+
+            };
+
+            if (data.RelatedTopics && data.RelatedTopics.length>0) {
+
+                rt.list = data.RelatedTopics.length > 6 ? data.RelatedTopics.slice(0, 5) : data.RelatedTopics;
+                $scope.rt = rt;
+                $scope.IsRelatedTopic = true;
+            }
+
+            
+
+          
         };
 
         var result = SearchFactory.getResult($routeParams.query).then(function (data) {
@@ -45,6 +62,9 @@ define([], function () {
                 massageData(data);
             //});
         });
+
+        $scope.IsDetails = false;
+        $scope.IsRelatedTopic = false;
     }
 
     DetailsController.$inject = ['$scope','$routeParams','SearchFactory'];

@@ -11,20 +11,20 @@
         </div>
     </div>
 
-    <div class="detail_body">
+    <div class="detail_body" ng-showmore ng-if="IsDetails">
         <div class="detail_left">
 
         </div>
 
-        <div class="detail_content">
+        <div class="detail_content" >
             <div class="media">
                 <a class="media-left" href="#">
                     <img ng-src="{{head.mainimg}}" class="title_img"/>
                 </a>
                 <div class="media-body">
                     <h3 class="media-heading">{{head.title}}</h3>
-                    <p class="head_description" ng-showmore>
-                        {{head.description}}
+                    <p class="head_description">
+                       {{head.description}}
                     </p>
                     <div class="show_more">
                         <span class="glyphicon glyphicon-circle-arrow-down"></span>
@@ -32,12 +32,27 @@
                     </div>
                     <div class="hide_it">
                         <span class="glyphicon glyphicon-circle-arrow-down"></span>
-                        <span>Show More</span>
+                        <span>Hide</span>
                     </div>
                 </div>
             </div>
+
+            <!--<details head="head"></details>-->
             
         </div>
 
+        <div class="related_topics" ng-rt  ng-if="IsRelatedTopic">
+        <div class="rt_content"  >
+            
+            <ul class="list-group">
+  <li class="list-group-item"><span class="rt_title">Related Topics</span></li>
+  <li class="list-group-item ellipsis" ng-repeat="item in rt.list"><span>{{item.Text}}</span></li>
+
+</ul>
+
+          <div class="well">
+              <span class="glyphicon glyphicon-chevron-down center" ></span>
+          </div>
     </div>
+            </div>
 </div>
