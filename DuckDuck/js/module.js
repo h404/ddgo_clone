@@ -154,5 +154,26 @@
               }
           }
       });
+
+      app.directive('ngDivide', function () {
+          return {
+              link: function ($scope, element, attrs) {
+
+                  var sizing=function()
+                  {
+                      //var topplace = element.find('.top_place');
+                      var search = element.find('.search');
+
+                      var topplaceheight = (($(window).height() / 2) - search.height()) / 2;
+                      $('.top_place').height(topplaceheight);
+
+                  }
+
+                  sizing();
+
+                  window.onresize = sizing;
+              }
+          }
+      });
     
   });
