@@ -11,13 +11,13 @@
         </div>
     </div>
 
-    <div class="detail_body" ng-showmore ng-if="IsDetails">
+    <div class="detail_body"  ng-if="IsDetails">
         <div class="detail_left">
 
         </div>
 
-        <div class="detail_content"  ng-if="IsTitle">
-            <div class="media">
+        <div class="detail_content" ng-if="IsTitle">
+            <div class="media" ng-showmore>
                 <a class="media-left" href="#">
                     <img ng-src="{{head.mainimg}}" class="title_img" />
                 </a>
@@ -31,7 +31,7 @@
                         <span>Show More</span>
                     </div>
                     <div class="hide_it">
-                        <span class="glyphicon glyphicon-circle-arrow-down"></span>
+                        <span class="glyphicon glyphicon-circle-arrow-up"></span>
                         <span>Hide</span>
                     </div>
                 </div>

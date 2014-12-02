@@ -9,6 +9,9 @@ define([], function () {
 
             };
 
+            var IsHeading = false;
+            var IsTitle = false;
+
             if(data.Image != "")
             {
                 head.mainimg = data.Image;
@@ -20,27 +23,34 @@ define([], function () {
 
             if (data.Heading != "") {
                 head.title = data.Heading;
-                $scope.IsHeading = true;
+                IsHeading = true;
             }
             else {
                 //Need to handle
-                $scope.IsHeading = false;
+                IsHeading = false;
             }
 
             if (data.AbstractText != "") {
                 head.description = data.AbstractText;
-                $scope.IsTitle = true;
+                IsTitle = true;
             }
             else {
-                $scope.IsTitle = false;
+                IsTitle = false;
                 $scope.rtfloat = 'left';
             }
 
-          
+            
 
             $scope.head = head;
+
             $scope.IsDetails = true;
             $scope.IsResult = true;
+
+            $scope.IsTitle = IsTitle;
+            $scope.IsHeading = IsHeading;
+
+     
+           
 
             var rt = {
 
