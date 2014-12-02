@@ -52,9 +52,9 @@
                   var scopeWatch = function (isanimate) {
 
                       var parentheight = element.height();
-                      var headheight = h3.height();
+                      var headheight = element.find('h3').height();
                       var pheight = element.find('p').get(0).scrollHeight;
-                      var mainbodyheight = descparent.height();
+                      var mainbodyheight = element.find('.media-body').height();
                       
                       if (pheight - headheight  > parentheight) {
                           var diff = parentheight - headheight - xTopOff;
@@ -78,13 +78,10 @@
                       scopeWatch();
                   };
 
-                  scopeWatch();
+                  //scopeWatch();
 
                   $scope.$watch('head', function (newValue, oldValue) {
-
-
                       scopeWatch();
-
                   });
               }
           };

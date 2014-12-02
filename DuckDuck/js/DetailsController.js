@@ -15,6 +15,7 @@ define([], function () {
             if(data.Image != "")
             {
                 head.mainimg = data.Image;
+                $scope.IsImg = true;
             }
             else
             {
@@ -33,6 +34,7 @@ define([], function () {
             if (data.AbstractText != "") {
                 head.description = data.AbstractText;
                 IsTitle = true;
+               
             }
             else {
                 IsTitle = false;
@@ -42,9 +44,10 @@ define([], function () {
             
 
             $scope.head = head;
-
-            $scope.IsDetails = true;
             $scope.IsResult = true;
+            if (IsTitle) {
+                $scope.IsDetails = true;
+            }
 
             $scope.IsTitle = IsTitle;
             $scope.IsHeading = IsHeading;
