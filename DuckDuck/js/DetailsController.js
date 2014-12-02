@@ -129,9 +129,12 @@ define([], function () {
             //});
         });
 
+        $scope.lasttext = $scope.query;
+
         $scope.Search = function () {
-            if ($scope.query) {
+            if ($scope.query && $scope.query!=$scope.lasttext) {
                 //$routeParams.query = $scope.query;
+                $scope.lasttext = $scope.query;
                 clearAll();
                 $location.path($scope.query);
             }
