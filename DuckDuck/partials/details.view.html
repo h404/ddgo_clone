@@ -6,53 +6,80 @@
         </div>
 
         <div class="form-group has-feedback header_content">
-            <input type="text" class="form-control" id="inputSuccess2" ng-model="query" ng-keyup="$event.key=='Enter' && Search()" />
+            <input type="text" class="form-control" id="inputSuccess2" ng-model="query" ng-keyup="$event.keyCode==13 && Search()" />
             <span class="glyphicon glyphicon-search form-control-feedback"></span>
         </div>
     </div>
 
-    <div class="detail_body" ng-showmore ng-if="IsDetails">
+    <div class="detail_body"  ng-if="IsDetails">
         <div class="detail_left">
 
         </div>
 
-        <div class="detail_content" >
-            <div class="media">
+        <div class="detail_content" ng-if="IsTitle">
+            <div class="media" ng-showmore>
                 <a class="media-left" href="#">
-                    <img ng-src="{{head.mainimg}}" class="title_img"/>
+                    <img ng-src="{{head.mainimg}}" class="title_img" />
                 </a>
                 <div class="media-body">
                     <h3 class="media-heading">{{head.title}}</h3>
                     <p class="head_description">
-                       {{head.description}}
+                        {{head.description}}
                     </p>
                     <div class="show_more">
                         <span class="glyphicon glyphicon-circle-arrow-down"></span>
                         <span>Show More</span>
                     </div>
                     <div class="hide_it">
-                        <span class="glyphicon glyphicon-circle-arrow-down"></span>
+                        <span class="glyphicon glyphicon-circle-arrow-up"></span>
                         <span>Hide</span>
                     </div>
                 </div>
             </div>
 
             <!--<details head="head"></details>-->
-            
+
         </div>
 
-        <div class="related_topics" ng-rt  ng-if="IsRelatedTopic">
-        <div class="rt_content"  >
-            
-            <ul class="list-group">
-  <li class="list-group-item"><span class="rt_title">Related Topics</span></li>
-  <li class="list-group-item ellipsis" ng-repeat="item in rt.list"><span>{{item.Text}}</span></li>
+        <div class="related_topics" ng-style="{float:rtfloat}" ng-rt ng-if="IsRelatedTopic">
+            <div class="rt_content">
 
-</ul>
+                <ul class="list-group">
+                    <li class="list-group-item"><span class="rt_title">Related Topics</span></li>
+                    <li class="list-group-item ellipsis" ng-repeat="item in rt.list"><span>{{item.Text}}</span></li>
 
-          <div class="well">
-              <span class="glyphicon glyphicon-chevron-down center" ></span>
-          </div>
-    </div>
+                </ul>
+
+                <div class="well">
+                    <span class="glyphicon glyphicon-chevron-down center"></span>
+                </div>
             </div>
+        </div>
+    </div>
+
+    <div class="result" ng-repeat="resitem in Results" ng-if="IsResult">
+        <div class="detail_left">
+
+        </div>
+
+
+
+        <div class="result_content">
+            <div class="media-body">
+                <h3 class="media-heading">{{resitem.header}}</h3>
+                <p>
+                    {{resitem.desc}}
+                </p>
+                <div class="bottom_link">
+                    <img src="{{resitem.favicon}}">
+                    <span>{{resitem.site}}</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <h4 ng-if="IsNoResult" class="noresult">
+        No result found, Refine your search
+    </h4>
 </div>

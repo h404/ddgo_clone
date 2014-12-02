@@ -1,6 +1,7 @@
 ﻿define([], function () {
 
     function MainController($scope, $location) {
+
         $scope.Search = function () {
             if($scope.query)
             {

@@ -53,17 +53,17 @@
 
                       var parentheight = element.height();
                       var headheight = h3.height();
-                      var pheight = p.get(0).scrollHeight;
+                      var pheight = element.find('p').get(0).scrollHeight;
                       var mainbodyheight = descparent.height();
                       
                       if (pheight - headheight  > parentheight) {
                           var diff = parentheight - headheight - xTopOff;
                           if (!isanimate) {
-                              p.height(diff);
-                              p.css({ overflow: 'hidden' });
+                              element.find('p').height(diff);
+                              element.find('p').css({ overflow: 'hidden' });
                           }
                           else {
-                              p.animate({ height:diff });
+                              element.find('p').animate({ height:diff });
                           }
                          
                           hide();
@@ -78,7 +78,7 @@
                       scopeWatch();
                   };
 
-                 // scopeWatch();
+                  scopeWatch();
 
                   $scope.$watch('head', function (newValue, oldValue) {
 
@@ -86,6 +86,15 @@
                       scopeWatch();
 
                   });
+              }
+          };
+      });
+
+      app.directive('ngSm', function () {
+
+          return {
+              link: function ($scope, element, attrs) {
+
               }
           };
       });
@@ -151,6 +160,27 @@
 
                   });
 
+              }
+          }
+      });
+
+      app.directive('ngDivide', function () {
+          return {
+              link: function ($scope, element, attrs) {
+
+                  var sizing=function()
+                  {
+                      //var topplace = element.find('.top_place');
+                      var search = element.find('.search');
+
+                      var topplaceheight = (($(window).height() / 2) - search.height()) / 2;
+                      $('.top_place').height(topplaceheight);
+
+                  }
+
+                  sizing();
+
+                  window.onresize = sizing;
               }
           }
       });

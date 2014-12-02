@@ -1,16 +1,16 @@
-﻿//app.controller("DetailsController", function ($scope) {
-
-//});
-
+﻿
 define([], function () {
  
-    function DetailsController($scope,$routeParams,SearchFactory) {
+    function DetailsController($scope,$routeParams,SearchFactory,$location) {
         
         var massageData = function (data) {
             
             var head = {
 
             };
+
+            var IsHeading = false;
+            var IsTitle = false;
 
             if(data.Image != "")
             {
@@ -23,23 +23,34 @@ define([], function () {
 
             if (data.Heading != "") {
                 head.title = data.Heading;
+                IsHeading = true;
             }
             else {
                 //Need to handle
+                IsHeading = false;
             }
 
             if (data.AbstractText != "") {
                 head.description = data.AbstractText;
+                IsTitle = true;
             }
             else {
-
+                IsTitle = false;
+                $scope.rtfloat = 'left';
             }
 
-
+            
 
             $scope.head = head;
-            $scope.IsDetails = true;
 
+            $scope.IsDetails = true;
+            $scope.IsResult = true;
+
+            $scope.IsTitle = IsTitle;
+            $scope.IsHeading = IsHeading;
+
+     
+           
 
             var rt = {
 
@@ -52,22 +63,82 @@ define([], function () {
                 $scope.IsRelatedTopic = true;
             }
 
-            
+            //Static result content , since it is not available in the given API
 
+            var Results = [];
+
+            Results.push({
+                header: 'Facebook Inc',
+                desc: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.',
+                favicon: 'https://duckduckgo.com/i/facebook.com.ico',
+                site:'facebook.com'
+            });
+
+            Results.push({
+                header: 'Facebook Inc',
+                desc: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.',
+                favicon: 'https://duckduckgo.com/i/facebook.com.ico',
+                site: 'facebook.com'
+            });
+
+            Results.push({
+                header: 'Facebook Inc',
+                desc: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.',
+                favicon: 'https://duckduckgo.com/i/facebook.com.ico',
+                site: 'facebook.com'
+            });
+
+            Results.push({
+                header: 'Facebook Inc',
+                desc: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.',
+                favicon: 'https://duckduckgo.com/i/facebook.com.ico',
+                site: 'facebook.com'
+            });
+
+            Results.push({
+                header: 'Facebook Inc',
+                desc: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.',
+                favicon: 'https://duckduckgo.com/i/facebook.com.ico',
+                site: 'facebook.com'
+            });
+
+            $scope.Results = Results;
           
+            if(!$scope.IsTitle && !$scope.IsRelatedTopic)
+            {
+                $scope.IsDetails = false;
+                $scope.IsResult = false;
+                $scope.IsNoResult = true;
+            }
         };
 
-        var result = SearchFactory.getResult($routeParams.query).then(function (data) {
+        var clearAll = function () {
+            $scope.IsDetails = $scope.IsResult = false;
+        };
+        $scope.rtfloat = 'right';
+        $scope.IsNoResult = false;
+        $scope.query = $routeParams.query;
+
+        var result = SearchFactory.getResult($routeParams.query,function (data) {
             //$scope.$apply(function () {
+                clearAll();
                 massageData(data);
             //});
         });
 
+        $scope.Search = function () {
+            if ($scope.query) {
+                //$routeParams.query = $scope.query;
+                clearAll();
+                $location.path($scope.query);
+            }
+        };
+        clearAll();
         $scope.IsDetails = false;
         $scope.IsRelatedTopic = false;
     }
 
-    DetailsController.$inject = ['$scope','$routeParams','SearchFactory'];
+    DetailsController.$inject = ['$scope', '$routeParams', 'SearchFactory', '$location'];
 
     return DetailsController;
 
