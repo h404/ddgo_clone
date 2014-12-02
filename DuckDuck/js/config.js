@@ -1,5 +1,4 @@
-﻿
-define([], function () {
+﻿define([], function () {
 
     function config($routeProvider) {
         $routeProvider.
